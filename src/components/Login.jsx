@@ -84,7 +84,9 @@ import { Link, useHistory } from "react-router-dom";
             borderRadius: "20px",
             fontSize: "20px",
             left: "20px",
-            backgroundColor: "grey",
+            backgroundColor: "#f92672",
+            border: 'none', 
+            marginLeft:'10px'
           }}
         >
           Login

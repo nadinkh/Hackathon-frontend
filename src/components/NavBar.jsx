@@ -32,6 +32,10 @@ function NavBar(props) {
           {" "}
           Data
         </NavLink>
+        <NavLink href="/SearchPage" style={{ color: "grey" }}>
+          {" "}
+         Search
+        </NavLink>
         <NavbarToggler />
         <Collapse navbar>
           <Nav className="mr-auto" navbar></Nav>

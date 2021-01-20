@@ -1,0 +1,18 @@
+#searchInput{
+    width: 750px;
+    display:flex;
+    justify-content: center;
+
+}
+
+.search-container{
+    background-image: url('./images/BloodOcean.png');
+    background-size: cover;
+    height: 1000px;
+    
+    }
+#formInline{
+    display:flex;
+    justify-content: center;
+    
+}

@@ -98,8 +98,11 @@ window.location.reload();
             height: "70px",
             width: "130px",
             borderRadius: "20px",
+            backgroundColor: "#f92672",   
             fontSize: "20px",
             left: "20px",
+            border: 'none', 
+            marginLeft:'10px'
           }}
         >
           Sign up

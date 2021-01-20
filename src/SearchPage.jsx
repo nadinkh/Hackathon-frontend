@@ -1,56 +1,80 @@
 import React, { useState, useEffect } from "react";
 import SearchBar from "./SearchBar";
-import SearchList from './SearchList.jsx'
-import NavBar from "./NavBar";
-
+import SearchList from "./SearchList.jsx";
 import axios from "axios";
+import { Form, Button, InputGroup, Input } from "reactstrap";
+import NavBar from "../src/components/NavBar";
+import './SearchPage.css';
 
 
-let pets = [];
 const SearchPage = (props) => {
-    const [name, setName] = useState('');
-    const [location, setLocation] = useState('');
-    const [isBtnClicked, setBtnClicked] = useState(false);
-    function BtnClicked(event) {
-        setBtnClicked(!isBtnClicked);
-    }
+  const [showResults, setShowResults] = useState("");
+  const [searchList, setSearchList] = useState("");
+  const [name, setName] = useState("");
+  const [city, setCity] = useState("");
+  const [isBtnClicked, setBtnClicked] = useState(false);
+  const [keyword, setKeyword] = useState("");
 
-    async function onBasicSearch(event) {
-        //  event.preventDefault();
-        const newSearch = {
-            name: name,
-        };
-        const response = await axios.get(
-            `http://localhost:5000/api/?name=${name}` //change
-        );
-        setSearchList(response.data);
-        setShowResults(true);
-        console.log(searchList);
-    }
+  console.log(keyword);
 
-    return (
-        <>
-            {/* <NavBar /> */}
+  async function onBasicSearch(event) {
+    //  event.preventDefault();
+    const newSearch = {
+      city: city,
+    };
+    const response = await axios.get(
+      `http://localhost:5000/hospital/search?city=${keyword}` //change
+    );
+    setSearchList(response.data);
+    setShowResults(true);
+    console.log(searchList);
+  }
 
-            <div>
-                <div>
-                    <br></br>
-                    <SearchBar />
+  return (
+    <>
+      <NavBar />
+      <div className="search-container">
+        <div>
+          <br></br>
 
-                </div>
-                {searchList.map((hospital) => (
+          <div >
+            <Form inline id="formInline">
+              <InputGroup>
+                <Input
+                  className="search-input"
+                  id='searchInput'
+                  key="random1"
+                  value={keyword}
+                  placeholder="search"
+                  onChange={(e) => setKeyword(e.target.value)}
+                />
+                <Button
+                  variant="outline-success"
+                  style = {{backgroundColor:"#f92672"}}
+                  onClick={(event) => onBasicSearch(event)}
+                >
+                  Search
+                </Button>
+              </InputGroup>
+            </Form>
+          </div>
+        </div>
+    {searchList &&  <ul>
+        {searchList.map((hospital) => (
                     <SearchList
+                    id= {hospital._id}
                         hospitalName={hospital.name}
                         hospitalCity={hospital.city}
                         hospitalEmail={hospital.email}
                         hospitalCell={hospital.cell}
-
+                        
 
                     />
                 ))}
-            </div>
-        </>
-    );
+                </ul>}
+      </div>
+    </>
+  );
 };
 
-export default SearchPage
+export default SearchPage;

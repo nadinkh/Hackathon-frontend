@@ -1,15 +1,6 @@
 import './searchBar.css'
-
 import { Form, Button, InputGroup, Input } from 'reactstrap';
 import React, { useState, useEffect } from "react";
-
-
-
-// import { Link } from "react-router-dom";
-
-// import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-
-// import React, { useState, useEffect } from 'react'
 
 const SearchBar = () => {
 
