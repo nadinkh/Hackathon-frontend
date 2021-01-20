@@ -12,6 +12,12 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
+.App{
+  background-image: url('../src/components/BloodOcean.png');
+  background-position: fixed;
+  background-size: cover;
+  height: 1000px;
+  }
 
 .App-header {
   background-color: #282c34;
