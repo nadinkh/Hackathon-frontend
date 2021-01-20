@@ -39,21 +39,21 @@ function Home(props) {
   const history = useHistory();
   const toggleSign = () => setModalSign(!modalSign);
 
-  async function sendUser(frmData) {
-    console.log(frmData);
+  // async function sendUser(frmData) {
+  //   console.log(frmData);
 
-    const response = await axios.post("http://localhost:5000/login", {
-      Email: email,
-      Password: password,
-    });
+  //   const response = await axios.post("http://localhost:5000/login", {
+  //     Email: email,
+  //     Password: password,
+  //   });
 
-    if (response.status === 200) {
-      localStorage.setItem("token", response);
-    }
-    console.log(response.data);
-    // history.push("/");
-    window.location.reload();
-  }
+  //   if (response.status === 200) {
+  //     localStorage.setItem("token", response);
+  //   }
+  //   console.log(response.data);
+  //   // history.push("/");
+  //   window.location.reload();
+  // }
 
   return (
     <div id="Home" className="Home" style={{backgroundImage:Background}}>

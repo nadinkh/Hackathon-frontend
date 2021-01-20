@@ -27,9 +27,8 @@ function SignUp(props) {
   const [bloodType, setBloodType] = useState("");
   const [insurance, setInsurance] = useState("");
   const [personalD, setPersonalID] = useState("");
-  const [previousDonor, setPreviousDonor] = useState("");
+  const [previousDonor, setPreviousDonor] = useState(true);
   const [password, setPassword] = useState("");
-  const [passwordConfirm, setPasswordConfirm] = useState("");
   const toggleLog = () => setModalLog(!modalLog);
   const [modalSign, setModalSign] = useState(false);
   const history = useHistory();
@@ -43,54 +42,50 @@ function SignUp(props) {
       email: email,
       cell: cell,
       bloodType: bloodType,
-      insurance: insurance,
-      personalID: personalD,
       previousDonor: previousDonor,
-      password: password,
-      passwordConfirm: passwordConfirm,
+      healthInsurance: insurance,
+      IDNumber: personalD,
+      password: password
+    
     };
 
     setUser(newUser);
     console.log(user);
     Register(newUser);
+    onAddUser();
   }
 
-  // function onLogin(event) {
-  //   event.preventDefault();
 
-  //   const findUser = {
-  //     Email: email,
-  //     Password: password,
-  //   };
+  function onAddUser(event) {
+    const newUser = user;
+    console.log(newUser);
+  }
 
-  //   getUser(findUser);
-  //   onAddUser(findUser);
-  //   console.log(JSON.stringify(findUser));
-  // }
 
-  // function onAddUser(event) {
-  //   const newUser = user;
-  //   console.log(newUser);
-  // }
-
-  const [fName, setfName] = useState("");
-  const [lName, setlName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [data, setData] = useState("");
 
   async function Register(frmData) {
     console.log(frmData);
 
-    const response = "";
-    //await axios(frmData);
+    const response = await axios.post('http://localhost:5000/signup',{
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        cell: cell,
+        bloodType: bloodType,
+        healthInsurance: insurance,
+        IDnumber: personalD,
+        previousDonor: previousDonor,
+        password: password
+  });
 
-    if (response.status === 200) {
-      localStorage.setItem("token", response);
-    }
-    console.log(response.data);
-    history.push("/Home");
-    window.location.reload();
+  if (response.status === 200) {
+    localStorage.setItem("token", response);
   }
+  console.log(response.data);
+  history.push("/Home");
+window.location.reload();
+}
+
 
   return (
     <div>
@@ -122,7 +117,7 @@ function SignUp(props) {
                   name="firstName"
                   id="firstName"
                   placeholder="First Name"
-                  onChange={(e) => setfName(e.target.value)}
+                  onChange={(e) => setFirstName(e.target.value)}
                 />
               </FormGroup>
               <FormGroup>
@@ -132,7 +127,7 @@ function SignUp(props) {
                   name="lastName"
                   id="lastName"
                   placeholder="Last Name"
-                  onChange={(e) => setlName(e.target.value)}
+                  onChange={(e) => setLastName(e.target.value)}
                 />
               </FormGroup>
               <FormGroup>
@@ -142,7 +137,7 @@ function SignUp(props) {
                   name="cellPhone"
                   id="cellPhone"
                   placeholder="Cell phone number"
-                  onChange={(e) => setPhone(e.target.value)}
+                  onChange={(e) => setCell(e.target.value)}
                 />
               </FormGroup>
               <FormGroup>
@@ -203,16 +198,6 @@ function SignUp(props) {
                   id="password"
                   placeholder="Password"
                   onChange={(e) => setPassword(e.target.value)}
-                />
-              </FormGroup>
-              <FormGroup>
-                <Label for="examplePasswordConfirm">Confirm password:</Label>
-                <Input
-                  type="passwordConfirm"
-                  name="passwordConfirm"
-                  id="PasswordConfirm"
-                  placeholder="Password"
-                  onChange={(e) => setPasswordConfirm(e.target.value)}
                 />
               </FormGroup>
               <Button
