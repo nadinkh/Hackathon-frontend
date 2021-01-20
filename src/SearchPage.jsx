@@ -4,8 +4,7 @@ import SearchList from "./SearchList.jsx";
 import axios from "axios";
 import { Form, Button, InputGroup, Input } from "reactstrap";
 import NavBar from "../src/components/NavBar";
-import './SearchPage.css';
-
+import "./SearchPage.css";
 
 const SearchPage = (props) => {
   const [showResults, setShowResults] = useState("");
@@ -18,16 +17,25 @@ const SearchPage = (props) => {
   console.log(keyword);
 
   async function onBasicSearch(event) {
-    //  event.preventDefault();
+    event.preventDefault();
+    console.log('Working');
     const newSearch = {
       city: city,
     };
+    
+    try {
+        console.log('her1')
     const response = await axios.get(
       `http://localhost:5000/hospital/search?city=${keyword}` //change
     );
+    console.log(response.data)
     setSearchList(response.data);
-    setShowResults(true);
-    console.log(searchList);
+    setShowResults(true); }
+    catch(e) {
+        console.log(e)
+    }
+    console.log("here1")
+
   }
 
   return (
@@ -37,20 +45,21 @@ const SearchPage = (props) => {
         <div>
           <br></br>
 
-          <div >
+          <div>
             <Form inline id="formInline">
               <InputGroup>
                 <Input
                   className="search-input"
-                  id='searchInput'
+                  id="searchInput"
                   key="random1"
                   value={keyword}
                   placeholder="search"
-                  onChange={(e) => setKeyword(e.target.value)}
+                  onChange={(e) => setKeyword(e.target.value)
+                }
                 />
                 <Button
                   variant="outline-success"
-                  style = {{backgroundColor:"#f92672"}}
+                  style={{ backgroundColor: "#f92672" }}
                   onClick={(event) => onBasicSearch(event)}
                 >
                   Search
@@ -59,19 +68,19 @@ const SearchPage = (props) => {
             </Form>
           </div>
         </div>
-    {searchList &&  <ul>
-        {searchList.map((hospital) => (
-                    <SearchList
-                    id= {hospital._id}
-                        hospitalName={hospital.name}
-                        hospitalCity={hospital.city}
-                        hospitalEmail={hospital.email}
-                        hospitalCell={hospital.cell}
-                        
-
-                    />
-                ))}
-                </ul>}
+        {searchList && (
+          <ul>
+            {searchList.map((hospital) => (
+              <SearchList
+                hospitalId={hospital._id}
+                hospitalName={hospital.name}
+                hospitalCity={hospital.city}
+                hospitalEmail={hospital.email}
+                hospitalCell={hospital.cell}
+              />
+            ))}
+          </ul>
+        )}
       </div>
     </>
   );

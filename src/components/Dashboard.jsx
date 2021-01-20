@@ -16,8 +16,9 @@ function Dashboard(props) {
   const toggleSign = () => setModalSign(!modalSign);
 
   return (
-    <div id="Dashboard">
-      <NavBar />
+    <div id="Dashboard" className="Dashboard">
+    <Login />
+    <SignUp />
     </div>
   );
 }

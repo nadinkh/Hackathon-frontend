@@ -15,8 +15,7 @@ import {
 } from "reactstrap";
 import { Link, useHistory } from "react-router-dom";
 
-
- function Login(props) {
+function Login(props) {
   const [user, setUser] = useState("");
   const [modalLog, setModalLog] = useState(false);
   const [email, setEmail] = useState("");
@@ -26,7 +25,6 @@ import { Link, useHistory } from "react-router-dom";
   const history = useHistory();
   const toggleSign = () => setModalSign(!modalSign);
   const [isAdmin, setIsAdmin] = useState(false);
-
 
   function onLogin(event) {
     event.preventDefault();
@@ -67,63 +65,60 @@ import { Link, useHistory } from "react-router-dom";
     }
     console.log(response.data);
     history.push("/Home");
- window.location.reload();
+    window.location.reload();
   }
 
-
   return (
-
-      <div className="Login">
-        <Button
-          color="secondary"
-          onClick={toggleLog}
-          className="Login"
-          style={{
-            height: "70px",
-            width: "130px",
-            borderRadius: "20px",
-            fontSize: "20px",
-            left: "20px",
-            backgroundColor: "#f92672",
-            border: 'none', 
-            marginLeft:'10px'
-          }}
-        >
-          Login
-        </Button>
-        <Modal isOpen={modalLog} toggle={toggleLog} id="login">
-          <ModalHeader toggle={toggleLog}>Login</ModalHeader>
-          <ModalBody>
-            <Form onSubmit={(event) => onLogin(event)}>
-              <FormGroup>
-                <Label for="exampleEmail">Email</Label>
-                <Input
-                  type="email"
-                  name="email"
-                  id="exampleEmail"
-                  placeholder="Email"
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-              </FormGroup>
-              <FormGroup>
-                <Label for="examplePassword">Password</Label>
-                <Input
-                  type="password"
-                  name="password"
-                  id="examplePassword"
-                  placeholder="Password"
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </FormGroup>
-              <Button type="primary" color="primary" onClick={submitValueLogin}>
-                Log in
-              </Button>
-            </Form>
-          </ModalBody>
-        </Modal>
-      </div>
-  
+    <div className="Login">
+      <Button
+        color="secondary"
+        onClick={toggleLog}
+        className="Login"
+        style={{
+          height: "70px",
+          width: "130px",
+          borderRadius: "20px",
+          fontSize: "20px",
+          left: "20px",
+          backgroundColor: "#f92672",
+          border: "none",
+          marginLeft: "10px",
+        }}
+      >
+        Login
+      </Button>
+      <Modal isOpen={modalLog} toggle={toggleLog} id="login">
+        <ModalHeader toggle={toggleLog}>Login</ModalHeader>
+        <ModalBody>
+          <Form onSubmit={(event) => onLogin(event)}>
+            <FormGroup>
+              <Label for="exampleEmail">Email</Label>
+              <Input
+                type="email"
+                name="email"
+                id="exampleEmail"
+                placeholder="Email"
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </FormGroup>
+            <FormGroup>
+              <Label for="examplePassword">Password</Label>
+              <Input
+                type="password"
+                name="password"
+                id="examplePassword"
+                placeholder="Password"
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </FormGroup>
+            <Button type="primary" color="primary" onClick={submitValueLogin}>
+              Log in
+            </Button>
+          </Form>
+        </ModalBody>
+      </Modal>
+    </div>
   );
 }
 
-export default Login
+export default Login;

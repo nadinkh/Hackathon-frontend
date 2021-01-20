@@ -34,7 +34,7 @@ function NavBar(props) {
         </NavLink>
         <NavLink href="/SearchPage" style={{ color: "grey" }}>
           {" "}
-         Search
+          Search
         </NavLink>
         <NavbarToggler />
         <Collapse navbar>
