@@ -1,4 +1,6 @@
+
 import Background from '../src/components/BloodOcean.png'
+import SearchBar from './SearchBar'
 import "./App.css";
 import Home from "../src/components/Home";
 import Dashboard from "../src/components/Dashboard";
@@ -11,6 +13,7 @@ function App() {
       backgroundImage: {Background}, backgroundSize:"cover", width:'100%', height:'100%'
 
     }} id ="bg">
+      <SearchBar />
       <Router>
         <Switch>
           <Route exact path="/" component={Dashboard}></Route>
