@@ -26,7 +26,7 @@ function SignUp(props) {
   const [cell, setCell] = useState("");
   const [bloodType, setBloodType] = useState("");
   const [insurance, setInsurance] = useState("");
-  const [personalD, setPersonalID] = useState("");
+  const [IDNumber, setIDNumber] = useState("");
   const [previousDonor, setPreviousDonor] = useState(true);
   const [password, setPassword] = useState("");
   const toggleLog = () => setModalLog(!modalLog);
@@ -44,7 +44,7 @@ function SignUp(props) {
       bloodType: bloodType,
       previousDonor: previousDonor,
       healthInsurance: insurance,
-      IDNumber: personalD,
+      IDNumber: IDNumber,
       password: password
     
     };
@@ -73,7 +73,7 @@ function SignUp(props) {
         cell: cell,
         bloodType: bloodType,
         healthInsurance: insurance,
-        IDnumber: personalD,
+        IDNumber: IDNumber,
         previousDonor: previousDonor,
         password: password
   });
@@ -161,13 +161,13 @@ window.location.reload();
                 />
               </FormGroup>
               <FormGroup>
-                <Label for="personalID">Personal ID: </Label>
+                <Label for="IDNumber">Personal ID: </Label>
                 <Input
                   type="text"
                   name="personalID"
                   id="personalID"
                   placeholder="personalID"
-                  onChange={(e) => setPersonalID(e.target.value)}
+                  onChange={(e) => setIDNumber(e.target.value)}
                 />
               </FormGroup>
               <FormGroup>

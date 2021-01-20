@@ -19,7 +19,7 @@ import { Link, useHistory } from "react-router-dom";
  function Login(props) {
   const [user, setUser] = useState("");
   const [modalLog, setModalLog] = useState(false);
-  const [email, setEmail] = useState("Hi");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const toggleLog = () => setModalLog(!modalLog);
   const [modalSign, setModalSign] = useState(false);
@@ -32,8 +32,8 @@ import { Link, useHistory } from "react-router-dom";
     event.preventDefault();
 
     const findUser = {
-      Email: email,
-      Password: password,
+      email: email,
+      password: password,
     };
 
     onAddUser(findUser);
@@ -47,8 +47,8 @@ import { Link, useHistory } from "react-router-dom";
 
   const submitValueLogin = () => {
     const frmdetails = {
-      Email: email,
-      Password: password,
+      email: email,
+      password: password,
     };
     console.log(frmdetails);
     sendUser(frmdetails);
