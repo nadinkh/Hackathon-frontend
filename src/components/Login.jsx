@@ -61,7 +61,7 @@ function Login(props) {
     });
 
     if (response.status === 200) {
-      localStorage.setItem("token", response);
+      localStorage.setItem("token",response.data.token);
     }
     console.log(response.data);
     history.push("/Home");

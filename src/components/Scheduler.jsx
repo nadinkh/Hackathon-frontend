@@ -3,17 +3,29 @@ import moment, { parseZone } from 'moment'
 import axios from 'axios'
 import { AppointmentPicker } from 'react-appointment-picker';
 import './Scheduler.css'
+import ConfirmationPage from './ConfirmationPage';
+import { Redirect } from 'react-router-dom';
+import { Button } from 'reactstrap'
 export default class Scheduler extends Component {
+
   state = {
     continuousLoading: false,
     lastDate: ''
   };
+
+
   
 
-  async addAppointment(time) {
+  async addAppointment(day, number, time) {
+    console.log(localStorage.getItem('token'))
+    console.log(day, number, time);
+    console.log(this.props.hospitalId);
     try {
-      await axios.post("localhost:5000/newappointment", {
-        date: time,
+      const formatMe = "YYYY-MM-DD HH:mm"
+      await axios.post("http://localhost:5000/newappointment", {
+
+        dateTime:moment(time).format(formatMe),
+       
         hospitalId: this.props.hospitalId
       }, {
         headers: {
@@ -27,8 +39,8 @@ export default class Scheduler extends Component {
 
   async removeAppointment(time) {
     try {
-      await axios.post("localhost:5000/remove-appointment", {
-        date: time,
+      await axios.post("http://localhost:5000/cancelappointment", {
+        dateTime:moment(time).format("YYYY-MM-DD HH:mm:ss"),
         hospitalId: this.props.hospitalId
       }, {
         headers: {
@@ -55,12 +67,20 @@ export default class Scheduler extends Component {
         if (removeCb) {
           removeCb(params.day, params.number);
         }
-        await this.addAppointment(time)
+        await this.addAppointment(day, number, time)
         addCb(day, number, time, id);
         this.setState({ continuousLoading: false, lastDate: time });
       }
     );
+
   };
+
+  Redirect(event){
+  console.log('Please redirect')
+    window.location= "/ConfirmationPage/?hospitalId=" + this.props.hospitalId;
+  };
+
+  
 
   removeAppointmentCallbackContinuousCase = (
     { day, number, time, id },
@@ -73,7 +93,9 @@ export default class Scheduler extends Component {
       async () => {
         await this.removeAppointment(time)
         removeCb(day, number);
+       
         this.setState({ continuousLoading: false });
+
       }
     );
   };
@@ -109,6 +131,7 @@ export default class Scheduler extends Component {
       } 
       days.push(day)     
     }
+
     return days
   }
 
@@ -120,6 +143,7 @@ export default class Scheduler extends Component {
     return (
       <div className="Scheduler">
         <h3 className="h3">Schedule your next blood donation</h3>
+        <Button id='ConfBtn'  color="secondary" onClick={(event)=>this.Redirect(event)}>Confirm appointment</Button>
         <AppointmentPicker className="AppointmentPicker"
           addAppointmentCallback={this.addAppointmentCallbackContinuousCase}
           removeAppointmentCallback={
@@ -135,6 +159,8 @@ export default class Scheduler extends Component {
           unitTime={60 * 60 * 1000}
           continuous
         />
+       
+    
       </div>
     );
   }

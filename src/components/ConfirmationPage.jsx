@@ -39,20 +39,20 @@ function ConfirmationPage(props) {
   const history = useHistory();
   const toggleSign = () => setModalSign(!modalSign);
 
+console.log(props)
 
   return (
     <div id="Confirmation" className="Confirmation" style={{backgroundImage:Background}}>
       <NavBar />
-      <h1> Hospital: {props.name}
-      </h1>
-      <h2> Address: {props.location}
-      </h2>
-      <h3> Date: {props.date}
+      <div id='Appointments'>
+      <h3> 
+      Hospital: Mercy Hospital <br></br>
+      City: Fairfield <br></br>
+      Date: Sunday, 14th of February 10:00 am <br></br>
+      Booking ID: 2344758747y87 <br></br>
+      Your email address: chesackstein@gmail.com
       </h3>
-      <h4> Booking ID: {props._id}
-      </h4>
-      <h5> Your email address: {props.email}
-      </h5>
+      </div>
     </div>
   );
 }
