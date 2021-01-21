@@ -1,4 +1,4 @@
-#SignUpBtn{
+#LoginBtn{
     height: 70px;
     width: 130px;
     border-radius: 20px;
@@ -6,9 +6,10 @@
     font-size: 20px;
     left: 20px;
     border: none;
+    
 
 }
 
-#SignUpBtn:hover {
+#LoginBtn:hover {
     background-color:grey;  
 }

@@ -2,20 +2,22 @@ import React, { Component } from 'react';
 import moment, { parseZone } from 'moment'
 import axios from 'axios'
 import { AppointmentPicker } from 'react-appointment-picker';
-
+import './Scheduler.css'
 export default class Scheduler extends Component {
   state = {
-    continuousLoading: false
+    continuousLoading: false,
+    lastDate: ''
   };
+  
 
   async addAppointment(time) {
     try {
-      await axios.post("localhost:5000/schedule-appointment", {
+      await axios.post("localhost:5000/newappointment", {
         date: time,
         hospitalId: this.props.hospitalId
       }, {
         headers: {
-          "authorization": "Bearer token",
+          "authorization": localStorage.getItem('token'),
       }})
     }
     catch (e) {
@@ -23,13 +25,14 @@ export default class Scheduler extends Component {
     }
   }
 
-  async removeAppointment() {
+  async removeAppointment(time) {
     try {
       await axios.post("localhost:5000/remove-appointment", {
+        date: time,
         hospitalId: this.props.hospitalId
       }, {
         headers: {
-          "authorization": "Bearer token",
+          "authorization":localStorage.getItem('token'),
       }})
     }
     catch (e) {
@@ -48,13 +51,13 @@ export default class Scheduler extends Component {
         continuousLoading: true
       },
       async () => {
-        await this.removeAppointment()
+        await this.removeAppointment(this.state.lastDate)
         if (removeCb) {
           removeCb(params.day, params.number);
         }
-        await this.addAppointment()
+        await this.addAppointment(time)
         addCb(day, number, time, id);
-        this.setState({ continuousLoading: false });
+        this.setState({ continuousLoading: false, lastDate: time });
       }
     );
   };
@@ -68,7 +71,7 @@ export default class Scheduler extends Component {
         continuousLoading: true
       },
       async () => {
-        await this.removeAppointment()
+        await this.removeAppointment(time)
         removeCb(day, number);
         this.setState({ continuousLoading: false });
       }
@@ -115,8 +118,9 @@ export default class Scheduler extends Component {
     const { loading, continuousLoading } = this.state;
     console.log(this.generateDays())
     return (
-      <div>
-        <AppointmentPicker
+      <div className="Scheduler">
+        <h3 className="h3">Schedule your next blood donation</h3>
+        <AppointmentPicker className="AppointmentPicker"
           addAppointmentCallback={this.addAppointmentCallbackContinuousCase}
           removeAppointmentCallback={
             this.removeAppointmentCallbackContinuousCase

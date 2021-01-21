@@ -17,7 +17,7 @@ function Dashboard(props) {
 
   return (
     <div id="Dashboard" className="Dashboard">
-    <Login />
+    <Login style={{color:'black'}}/>
     <SignUp />
     </div>
   );

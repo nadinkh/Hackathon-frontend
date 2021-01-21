@@ -43,7 +43,7 @@ function Login(props) {
     console.log(newUser);
   }
 
-  const submitValueLogin = () => {
+  const submitValueConfirm = () => {
     const frmdetails = {
       email: email,
       password: password,
@@ -52,59 +52,26 @@ function Login(props) {
     sendUser(frmdetails);
   };
 
-  async function sendUser(frmData) {
-    console.log(frmData);
-
-    const response = await axios.post("http://localhost:5000/login", {
-      email: email,
-      password: password,
-    });
-
-    if (response.status === 200) {
-      localStorage.setItem("token", response);
-    }
-    console.log(response.data);
-    history.push("/Home");
+  function Redirect(event){
+    history.push("/ConfirmationPage");
     window.location.reload();
   }
 
+
   return (
-    <div className="Login">
+    <div className="ConfModal">
       <Button
         onClick={toggleLog}
-        className="LoginBtn"
-        id="LoginBtn"
+        id="confBtn"
       >
         Login
       </Button>
-      <Modal isOpen={modalLog} toggle={toggleLog} id="login">
-        <ModalHeader toggle={toggleLog}>Login</ModalHeader>
+      <Modal isOpen={modalLog} toggle={toggleLog} id="Confirm">
+        <ModalHeader toggle={toggleLog}>Confirm</ModalHeader>
         <ModalBody>
-          <Form onSubmit={(event) => onLogin(event)}>
-            <FormGroup>
-              <Label for="exampleEmail">Email</Label>
-              <Input
-                type="email"
-                name="email"
-                id="exampleEmail"
-                placeholder="Email"
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </FormGroup>
-            <FormGroup>
-              <Label for="examplePassword">Password</Label>
-              <Input
-                type="password"
-                name="password"
-                id="examplePassword"
-                placeholder="Password"
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </FormGroup>
-            <Button type="primary" color="primary" onClick={submitValueLogin}>
-              Log in
+            <Button type="primary" color="primary" onClick={(event) => Redirect(event)}>
+             Confirm
             </Button>
-          </Form>
         </ModalBody>
       </Modal>
     </div>
