@@ -15,7 +15,7 @@ import {
 } from "reactstrap";
 import NavBar from "./NavBar";
 import { Link, useHistory } from "react-router-dom";
-
+import './SignUp.css'
 function SignUp(props) {
   const [user, setUser] = useState("");
   const [findUser, getUser] = useState("");
@@ -91,9 +91,9 @@ window.location.reload();
     <div>
       <div className="Signup">
         <Button
-          color="secondary"
           onClick={toggleSign}
-          className="SignUp"
+          className="SignUpBtn"
+          id="SignUpBtn"
         >
           Sign up
         </Button>

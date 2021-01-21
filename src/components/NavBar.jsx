@@ -39,8 +39,8 @@ function NavBar(props) {
         <NavbarToggler />
         <Collapse navbar>
           <Nav className="mr-auto" navbar></Nav>
-          <SignUp />
-          <Login />
+          <SignUp  />
+          <Login style={{marginLeft:"10px"}} />
         </Collapse>
       </Navbar>
     </div>
