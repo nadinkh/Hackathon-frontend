@@ -1,5 +1,5 @@
-import Background from '../src/components/BloodOcean.png'
-import SearchBar from './SearchBar'
+import Background from "../src/components/BloodOcean.png";
+import SearchBar from "./SearchBar";
 import "./App.css";
 import Home from "../src/components/Home";
 import Dashboard from "../src/components/Dashboard";
@@ -11,10 +11,16 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App" style={{ 
-      backgroundImage: {Background}, backgroundSize:"cover", width:'100%', height:'100%'
-
-    }} id ="bg">
+    <div
+      className="App"
+      style={{
+        backgroundImage: { Background },
+        backgroundSize: "cover",
+        width: "100%",
+        height: "100%",
+      }}
+      id="bg"
+    >
       <Router>
         <Switch>
           <Route exact path="/" component={Dashboard}></Route>
@@ -28,13 +34,13 @@ function App() {
             <li>
                 <Link to="/ConfirmationPage">Confirmation</Link>
               </li>
-            <li>
+              <li>
                 <Link to="/Bookings">Bookings</Link>
               </li>
-            <li>
+              <li>
                 <Link to="/SearchPage">Search Page</Link>
               </li>
-            <li>
+              <li>
                 <Link to="/DataDisplay">Data Display</Link>
               </li>
               <li>
