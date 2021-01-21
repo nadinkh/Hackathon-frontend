@@ -10,7 +10,7 @@ import './Bookings.css'
 
 function Bookings(props){
 const [scheduledHrs, setScheduledHrs] = useState([[], [], [], [], [], [], []]);
-//const [hospitalId, setHospitalId] = useState("");
+
 const {hospitalId} = props.location.state.params.hospitalId;
 
 
@@ -19,13 +19,17 @@ useEffect(
      async  () => {
        
             const response = await axios.get(
-              `http://localhost:5000/hospital/search?hospitalId=${hospitalId}` //change
+              `http://localhost:5000/appointments`, {
+                body: {
+                  hospitalId: hospitalId
+                }
+              } //change
             );
       //    setScheduledHrs(response.data)
           }
   )
 return (
-    <div id="Bookings">
+    <div className="Bookings">
     <NavBar />
     <Scheduler 
       startHour={moment().hours(9).minutes(0).seconds(0)}

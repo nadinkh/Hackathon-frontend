@@ -5,6 +5,7 @@ import Home from "../src/components/Home";
 import Dashboard from "../src/components/Dashboard";
 import DataDisplay from "../src/components/DataDisplay";
 import Bookings from "../src/components/Bookings";
+import ConfirmationPage from "../src/components/ConfirmationPage";
 import SearchPage from "./SearchPage"
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
@@ -21,8 +22,12 @@ function App() {
           <Route exact path="/DataDisplay" component={DataDisplay}></Route>
           <Route exact path="/SearchPage" component={SearchPage}></Route>
           <Route exact path="/Bookings" component={Bookings}></Route>
+          <Route exact path="/ConfirmationPage" component={ConfirmationPage}></Route>
           <Route>
             <ul>
+            <li>
+                <Link to="/ConfirmationPage">Confirmation</Link>
+              </li>
             <li>
                 <Link to="/Bookings">Bookings</Link>
               </li>
