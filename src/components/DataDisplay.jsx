@@ -6,15 +6,19 @@ import "./DataDisplay.css";
 import {} from "reactstrap";
 import NavBar from "./NavBar";
 import { Link, useHistory } from "react-router-dom";
+import ChartsPage from './graphs'
+
 
 function DataDisplay(props) {
   return (
     <div
       id="DataDisplay"
       className="DataDisplay"
-      style={{ backgroundImage: Background }}
     >
       <NavBar />
+      <div id='Graph'>
+      <ChartsPage />
+      </div>
     </div>
   );
 }
