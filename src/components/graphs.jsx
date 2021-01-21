@@ -38,7 +38,7 @@ class ChartsPage extends React.Component {
             pointHoverBorderWidth: 2,
             pointRadius: 1,
             pointHitRadius: 10,
-            data: values
+            data: values,
           }
         ]
       }
@@ -49,8 +49,7 @@ class ChartsPage extends React.Component {
   render() {
     return (
       <MDBContainer>
-        <h3 className="mt-5">Line chart</h3>
-        <Line data={this.state.dataline} options={{ responsive: true }} />
+        <Line data={this.state.dataline} options={{ responsive: true}} />
       </MDBContainer>
     );
   }
