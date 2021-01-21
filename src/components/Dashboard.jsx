@@ -16,9 +16,11 @@ function Dashboard(props) {
   const toggleSign = () => setModalSign(!modalSign);
 
   return (
-    <div id="Dashboard" className="Dashboard">
-    <Login style={{color:'black'}}/>
+    <div id="Dashboard" className="Dashboard" >
+    <div id="Dash" className="Dash">
+    <Login />
     <SignUp />
+    </div>
     </div>
   );
 }

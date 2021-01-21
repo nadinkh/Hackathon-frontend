@@ -3,3 +3,14 @@
         background-size: cover;
         height: 1000px;
 }
+
+#Appointments{
+        display:flex;
+        color:white;
+        justify-content: center;
+        background-color: #f92672;
+        width:100%;
+        margin-top:8%;
+        border:white;
+        border-radius:15px;
+}

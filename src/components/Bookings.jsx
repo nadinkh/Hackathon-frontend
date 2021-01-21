@@ -11,17 +11,16 @@ import './Bookings.css'
 function Bookings(props){
 const [scheduledHrs, setScheduledHrs] = useState([[], [], [], [], [], [], []]);
 
-const {hospitalId} = props.location.state.params.hospitalId;
-
+const hospitalId = props.location.state.params.hospitalId;
 
 useEffect(
  
      async  () => {
-       
+      console.log(hospitalId, 'before')
             const response = await axios.get(
-              `http://localhost:5000/appointments`, {
-                body: {
-                  hospitalId: hospitalId
+              `http://localhost:5000/appointment?hospitalId=${hospitalId}`, {
+                headers: {
+                  "authorization": localStorage.getItem('token')
                 }
               } //change
             );

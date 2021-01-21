@@ -26,36 +26,8 @@ function Login(props) {
   const toggleSign = () => setModalSign(!modalSign);
   const [isAdmin, setIsAdmin] = useState(false);
 
-  function onLogin(event) {
-    event.preventDefault();
 
-    const findUser = {
-      email: email,
-      password: password,
-    };
 
-    onAddUser(findUser);
-    console.log(JSON.stringify(findUser));
-  }
-
-  function onAddUser(event) {
-    const newUser = user;
-    console.log(newUser);
-  }
-
-  const submitValueConfirm = () => {
-    const frmdetails = {
-      email: email,
-      password: password,
-    };
-    console.log(frmdetails);
-    sendUser(frmdetails);
-  };
-
-  function Redirect(event){
-    history.push("/ConfirmationPage");
-    window.location.reload();
-  }
 
 
   return (
